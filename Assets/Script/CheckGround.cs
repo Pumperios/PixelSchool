@@ -9,8 +9,8 @@ public class CheckGround : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        player = GetComponentInParent<PlayerController>();
-        rb2d = GetComponentInParent<Rigidbody2D>();
+        player = GetComponent<PlayerController>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
     void OncollisionEnterInParent(Collision col)
     {
