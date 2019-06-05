@@ -37,13 +37,6 @@ public class PlayerController : MonoBehaviour {
             {
                 jump = true;
                 doubleJump = true;
-                Debug.Log("Puede saltar");
-            }
-            else if(doubleJump && grounded)
-            {
-                jump = true;
-                Debug.Log("doble salto");
-                doubleJump = false;
             }
         }
         FixedUpdate();

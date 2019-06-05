@@ -7,12 +7,11 @@ public class CheckGround : MonoBehaviour {
     private PlayerController player;
     private Rigidbody2D rb2d;
 
-    // Use this for initialization
     void Start () {
         player = GetComponent<PlayerController>();
         rb2d = GetComponent<Rigidbody2D>();
     }
-    void OncollisionEnterInParent(Collision col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Platform")
         {
@@ -21,7 +20,9 @@ public class CheckGround : MonoBehaviour {
             player.grounded = true;
         }
     }
-    void OnCollisionStay2D(Collision2D col){
+
+    void OnCollisionStay2D(Collision2D col)
+    {
         if (col.gameObject.tag == "Ground")
         {
             player.grounded = true;
@@ -32,6 +33,7 @@ public class CheckGround : MonoBehaviour {
             player.grounded = true;
         }
     }
+
     void OnCollisionExit2D(Collision2D col)
     {
         if (col.gameObject.tag == "Ground")
