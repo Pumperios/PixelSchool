@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer spr;
     private bool jump;
     private bool doubleJump;
+    private bool hasDoubleJump = true;
     private bool movement = true;
     // Use this for initialization
     void Start () {
@@ -30,13 +31,18 @@ public class PlayerController : MonoBehaviour {
         {
             jump = false;
             doubleJump = false;
+            hasDoubleJump = true;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if(grounded)
             {
                 jump = true;
+            }
+            else if (hasDoubleJump)
+            {
                 doubleJump = true;
+                hasDoubleJump = false;
             }
         }
         FixedUpdate();
@@ -67,11 +73,18 @@ public class PlayerController : MonoBehaviour {
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
-        if (jump)
+        if (jump || doubleJump)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
             rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            jump = false;
+            if (jump)
+            {
+                jump = false;
+            }
+            else
+            {
+                doubleJump = false;
+            }
         }
 
         //Debug.Log(rb2d.velocity.x);
